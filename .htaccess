@@ -1,0 +1,20 @@
+AddDefaultCharset UTF-8
+AddType 'text/html; charset=UTF-8' html
+
+RewriteEngine on
+RewriteBase /
+
+
+# не позволять httpd отдавать файлы, начинающиеся с точки (.htaccess, .svn, .git и прочие)
+#RedirectMatch 403 /\..*$
+
+# если директория или файл существуют, использовать их напрямую
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# иначе отправлять запрос на файл index.php
+#RewriteRule . index.php
+#RewriteRule ^(.*)$ index.php?route=$1 [L,QSA]
+#RewriteCond $1 !^(index\.php|assets|images|robots\.txt)
+RewriteRule ^(.*)$ index.php [L,QSA]
+
