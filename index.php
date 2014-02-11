@@ -9,6 +9,10 @@ defined('APPLICATION_ENV') || define('APPLICATION_ENV', (
     getenv('APPLICATION_ENV') ? getenv('APPLICATION_ENV') : 'production'
 ));
 
+if( strpos($_SERVER['SERVER_NAME'], 'local') ){
+    define('APPLICATION_ENV', 'development');
+}
+
 require_once('app/autoload.php');
 classload::start();
 //require_once('app/application.php');
